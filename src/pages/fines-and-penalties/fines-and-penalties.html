@@ -1,22 +1,21 @@
 <ion-header>
 
-  <ion-navbar color="primary">
-  	<button ion-button menuToggle icon-only>
+	<ion-navbar color="primary">
+		<button ion-button menuToggle icon-only>
       <ion-icon name='menu'></ion-icon>
     </button>
-    <ion-title>List of Fines and Penalties</ion-title>
-  </ion-navbar>
+		<ion-title>List of Fines and Penalties</ion-title>
+	</ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <ion-searchbar [(ngModel)]="searchQuery" (ionInput)="searchPenalties()"></ion-searchbar>
+	<ion-searchbar [(ngModel)]="searchQuery" (ionInput)="searchPenalties()"></ion-searchbar>
 	<ion-list>
-    <button ion-item text-wrap [navPush]="detailPage" *ngFor="let finePenalties of showPenalties"
-    [navParams]="{fines: finePenalties}"> 
-      {{finePenalties.vf_name}}
-    </button>
+		<ion-item ion-item text-wrap (click)="showPenalitiesDetails(finePenalties)" *ngFor="let finePenalties of showPenalties">
+			{{finePenalties.vf_name}}
+		</ion-item>
 	</ion-list>
 
 </ion-content>
