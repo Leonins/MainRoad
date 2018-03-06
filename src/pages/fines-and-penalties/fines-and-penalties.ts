@@ -11,7 +11,7 @@ import { violation_fines } from '../../models/finesAndPenalties/filesAndPenaltie
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+import { FinesAndPenaltiesDetailPage } from '../fines-and-penalties-detail/fines-and-penalties-detail';
 @IonicPage()
 @Component({
   selector: 'page-fines-and-penalties',
@@ -19,8 +19,8 @@ import { violation_fines } from '../../models/finesAndPenalties/filesAndPenaltie
 })
 //use a loader at the time of api call
 export class FinesAndPenaltiesPage {
-  private showPenalties: Array<violation_fines>;
-  private savedPenalties: Array<violation_fines>;
+  private showPenalties: Array<violation_fines> = [];
+  private savedPenalties: Array<violation_fines> = [];
   private searchQuery: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, app: App, menu: MenuController,
@@ -28,17 +28,6 @@ export class FinesAndPenaltiesPage {
 
     menu.enable(true);
     menu.swipeEnable(true);
-
-    // this.finesPenalties$ = this.fineAndPenalties
-    //   .getFinesAndPenalties() // DB List
-    //   .snapshotChanges() // Key and Value
-    //   .map(changes => {
-
-    //     return changes.map(c => ({
-    //       key: c.payload.key, ...c.payload.val()
-    //     }));
-    //   });
-
     let _this = this;
     this.fineAndPenalties.getFinesAndPenalties().snapshotChanges().subscribe(snapshots => {
       let penalities = [];
@@ -67,6 +56,10 @@ export class FinesAndPenaltiesPage {
     else {
       this.showPenalties = this.savedPenalties
     }
+  }
+
+  showPenalitiesDetails(penalities: violation_fines) {
+    this.navCtrl.push(FinesAndPenaltiesDetailPage, { 'finePenalities': penalities });
   }
 }
 

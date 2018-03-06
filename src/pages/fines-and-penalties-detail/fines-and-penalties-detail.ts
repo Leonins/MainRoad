@@ -11,11 +11,13 @@ export class FinesAndPenaltiesDetailPage {
 
   finesAndPenalties: violation_fines;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    if (this.navParams.get('finePenalities'))
+      this.finesAndPenalties = this.navParams.get('finePenalities');
   }
 
   ionViewWillLoad() {
-    console.log(this.navParams.get('fines'));
-    this.finesAndPenalties = this.navParams.get('fines');
+
+
   }
 
 }

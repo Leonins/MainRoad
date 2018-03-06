@@ -8,25 +8,25 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
-import { LocationAccuracy} from '@ionic-native/location-accuracy';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { Camera } from '@ionic-native/camera';
-import { GooglePlus} from '@ionic-native/google-plus';
+import { GooglePlus } from '@ionic-native/google-plus';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
-import {NativeStorage } from '@ionic-native/native-storage';
+import { NativeStorage } from '@ionic-native/native-storage';
 import { Geofence } from '@ionic-native/geofence';
 
-import { AngularFireModule} from 'angularfire2';
+import { AngularFireModule } from 'angularfire2';
 import { FIREBASE_CONFIG } from './firebase.credentials';
-import { AngularFireDatabaseModule} from 'angularfire2/database';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FinesAndPenaltiesService } from '../services/fines-and-penalties/fines-and-penalties.service';
 import firebase from 'firebase';
-
+import { FinesAndPenaltiesDetailPage } from '../../src/pages/fines-and-penalties-detail/fines-and-penalties-detail';
 
 firebase.initializeApp(FIREBASE_CONFIG);
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp, FinesAndPenaltiesDetailPage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +36,8 @@ firebase.initializeApp(FIREBASE_CONFIG);
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    FinesAndPenaltiesDetailPage
   ],
   providers: [
     StatusBar,
@@ -50,8 +51,8 @@ firebase.initializeApp(FIREBASE_CONFIG);
     AndroidPermissions,
     NativeStorage,
     Geofence,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
 
   ]
 })
-export class AppModule {}
+export class AppModule { }
